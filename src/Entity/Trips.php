@@ -41,6 +41,10 @@ class Trips
     #[ORM\Column]
     private ?bool $billableClient = null;
 
+    #[ORM\ManyToOne(inversedBy: 'trips')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Users $Users = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +154,18 @@ class Trips
     public function setBillableClient(bool $billableClient): static
     {
         $this->billableClient = $billableClient;
+
+        return $this;
+    }
+
+    public function getUsers(): ?Users
+    {
+        return $this->Users;
+    }
+
+    public function setUsers(?Users $Users): static
+    {
+        $this->Users = $Users;
 
         return $this;
     }
