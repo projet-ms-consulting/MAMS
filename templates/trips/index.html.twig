@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trips index{% endblock %}
+
+{% block body %}
+    <h1>Trips index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TripDate</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Mileage</th>
+                <th>Unit</th>
+                <th>Context</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>BillableClient</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trip in trips %}
+            <tr>
+                <td>{{ trip.id }}</td>
+                <td>{{ trip.tripDate ? trip.tripDate|date('Y-m-d') : '' }}</td>
+                <td>{{ trip.origin }}</td>
+                <td>{{ trip.destination }}</td>
+                <td>{{ trip.mileage }}</td>
+                <td>{{ trip.unit }}</td>
+                <td>{{ trip.context }}</td>
+                <td>{{ trip.category }}</td>
+                <td>{{ trip.description }}</td>
+                <td>{{ trip.billableClient ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_trips_show', {'id': trip.id}) }}">show</a>
+                    <a href="{{ path('app_trips_edit', {'id': trip.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trips_new') }}">Create new</a>
+{% endblock %}

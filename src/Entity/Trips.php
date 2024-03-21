@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TripsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,6 +46,18 @@ class Trips
     #[ORM\ManyToOne(inversedBy: 'trips')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $Users = null;
+
+    #[ORM\OneToMany(targetEntity: Expenses::class, mappedBy: 'trips')]
+    private Collection $Expenses;
+
+    #[ORM\ManyToMany(targetEntity: Vehicle::class, inversedBy: 'trips')]
+    private Collection $Vehicle;
+
+    public function __construct()
+    {
+        $this->Expenses = new ArrayCollection();
+        $this->Vehicle = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +180,60 @@ class Trips
     public function setUsers(?Users $Users): static
     {
         $this->Users = $Users;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Expenses>
+     */
+    public function getExpenses(): Collection
+    {
+        return $this->Expenses;
+    }
+
+    public function addExpense(Expenses $expense): static
+    {
+        if (!$this->Expenses->contains($expense)) {
+            $this->Expenses->add($expense);
+            $expense->setTrips($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExpense(Expenses $expense): static
+    {
+        if ($this->Expenses->removeElement($expense)) {
+            // set the owning side to null (unless already changed)
+            if ($expense->getTrips() === $this) {
+                $expense->setTrips(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicle>
+     */
+    public function getVehicle(): Collection
+    {
+        return $this->Vehicle;
+    }
+
+    public function addVehicle(Vehicle $vehicle): static
+    {
+        if (!$this->Vehicle->contains($vehicle)) {
+            $this->Vehicle->add($vehicle);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicle(Vehicle $vehicle): static
+    {
+        $this->Vehicle->removeElement($vehicle);
 
         return $this;
     }
