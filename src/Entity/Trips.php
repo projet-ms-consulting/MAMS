@@ -49,6 +49,10 @@ class Trips
     #[ORM\ManyToMany(targetEntity: Vehicle::class, inversedBy: 'trips')]
     private Collection $Vehicle;
 
+    #[ORM\ManyToOne(inversedBy: 'trips')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->Expenses = new ArrayCollection();
@@ -168,18 +172,6 @@ class Trips
         return $this;
     }
 
-    public function getUsers(): ?Users
-    {
-        return $this->Users;
-    }
-
-    public function setUsers(?Users $Users): static
-    {
-        $this->Users = $Users;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Expenses>
      */
@@ -230,6 +222,18 @@ class Trips
     public function removeVehicle(Vehicle $vehicle): static
     {
         $this->Vehicle->removeElement($vehicle);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
