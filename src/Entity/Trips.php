@@ -43,10 +43,6 @@ class Trips
     #[ORM\Column]
     private ?bool $billableClient = null;
 
-    #[ORM\ManyToOne(inversedBy: 'trips')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Users $Users = null;
-
     #[ORM\OneToMany(targetEntity: Expenses::class, mappedBy: 'trips')]
     private Collection $Expenses;
 
