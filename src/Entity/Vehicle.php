@@ -27,7 +27,7 @@ class Vehicle
     #[ORM\Column]
     private ?int $fiscal_power = null;
 
-    #[ORM\ManyToMany(targetEntity: Trips::class, mappedBy: 'Vehicle')]
+    #[ORM\ManyToMany(targetEntity: Trips::class, mappedBy: 'vehicle')]
     private Collection $trips;
 
     public function __construct()

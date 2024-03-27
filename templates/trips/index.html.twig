@@ -17,6 +17,7 @@
                 <th>Context</th>
                 <th>Category</th>
                 <th>Description</th>
+                <th>Vehicle</th>
                 <th>BillableClient</th>
                 <th>actions</th>
             </tr>
@@ -33,6 +34,11 @@
                 <td>{{ trip.context }}</td>
                 <td>{{ trip.category }}</td>
                 <td>{{ trip.description }}</td>
+                <td>
+                    {% for vehicle in trip.vehicle %}
+                        Vehicule n°{{ loop.index }}{{ vehicle.label }}
+                    {% endfor %}
+                </td>
                 <td>{{ trip.billableClient ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_trips_show', {'id': trip.id}) }}">show</a>

@@ -46,17 +46,17 @@ class Trips
     #[ORM\OneToMany(targetEntity: Expenses::class, mappedBy: 'trips')]
     private Collection $Expenses;
 
-    #[ORM\ManyToMany(targetEntity: Vehicle::class, inversedBy: 'trips')]
-    private Collection $Vehicle;
-
     #[ORM\ManyToOne(inversedBy: 'trips')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\ManyToMany(targetEntity: Vehicle::class, inversedBy: 'trips')]
+    private Collection $vehicle;
+
     public function __construct()
     {
         $this->Expenses = new ArrayCollection();
-        $this->Vehicle = new ArrayCollection();
+        $this->vehicle = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -202,30 +202,6 @@ class Trips
         return $this;
     }
 
-    /**
-     * @return Collection<int, Vehicle>
-     */
-    public function getVehicle(): Collection
-    {
-        return $this->Vehicle;
-    }
-
-    public function addVehicle(Vehicle $vehicle): static
-    {
-        if (!$this->Vehicle->contains($vehicle)) {
-            $this->Vehicle->add($vehicle);
-        }
-
-        return $this;
-    }
-
-    public function removeVehicle(Vehicle $vehicle): static
-    {
-        $this->Vehicle->removeElement($vehicle);
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -234,6 +210,30 @@ class Trips
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicle>
+     */
+    public function getVehicle(): Collection
+    {
+        return $this->vehicle;
+    }
+
+    public function addVehicle(Vehicle $vehicle): static
+    {
+        if (!$this->vehicle->contains($vehicle)) {
+            $this->vehicle->add($vehicle);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicle(Vehicle $vehicle): static
+    {
+        $this->vehicle->removeElement($vehicle);
 
         return $this;
     }

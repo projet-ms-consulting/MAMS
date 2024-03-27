@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Trips;
+use App\Entity\User;
 use App\Entity\Users;
 use App\Entity\Vehicle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,13 +27,15 @@ class TripsType extends AbstractType
             ->add('category')
             ->add('description')
             ->add('billableClient')
-            ->add('Users', EntityType::class, [
-                'class' => Users::class,
-                'choice_label' => 'id',
+            ->add('User', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => function (User $user) {
+                    return $user->getLastname() . ' ' . $user->getFirstname();
+                },
             ])
             ->add('Vehicle', EntityType::class, [
                 'class' => Vehicle::class,
-                'choice_label' => 'id',
+                'choice_label' => 'label',
                 'multiple' => true,
             ])
         ;
