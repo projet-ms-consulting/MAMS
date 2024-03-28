@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Crimson Text', sans-serif;
+    background-color: aliceblue;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 0 10px;
+}
+
+main {
+    flex: 1;
+    padding: 1rem 0;
+    background-color: #2B4D89;
+    color:white;
+}
+
+
+footer {
+    padding: 1rem 0 1rem 0;
+    text-align: center;
+    background-color:white;
+    color: #2B4D89;
+}
+
+.forgot-password-link {
+    color: white;
+}
+
+form > div > div{
+    margin-top: 15px;
+}
+form > div {
+    margin-top: 15px;
+}
+
+/* Alignement vertical des éléments du formulaire */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Espacement entre les éléments */
+form > * {
+    margin-bottom: 10px;
+}
+
+/* Empêcher l'élargissement du bouton */
+.btnAppPerso {
+    align-self: flex-start;
+}
