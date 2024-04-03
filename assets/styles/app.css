@@ -11,8 +11,7 @@ body {
 .container {
     max-width: 800px;
     margin: auto;
-    padding: 0 10px;
-    padding-bottom: 135px;
+    padding: 0 10px 135px;
 }
 
 main {
@@ -65,11 +64,10 @@ form > * {
 h1{
     text-align: center;
     text-shadow: 1px 1px #0a66c2;
-    color: #01012f;
+    color: gold;
 }
 .card{
-    margin: auto;
-    margin-top: 50px;
+    margin: 50px auto auto;
     border-radius: 10px;
     border: 8px solid #0a66c2;
     background-color: lightgoldenrodyellow;
@@ -81,7 +79,7 @@ h1{
     opacity: 80%;
     margin-top: 20px;
 }
-.nomprojet{
+.mamas{
     color: #c0c07d;
     margin-right: 5rem;
     font-size: 2rem;
