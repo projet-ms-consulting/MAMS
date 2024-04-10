@@ -7,9 +7,12 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -43,12 +46,19 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(User $user, Security $security): Response
     {
+        // Vérifiez si l'utilisateur est connecté
+        $currentUser = $security->getUser();
+
+        // Passez l'utilisateur au template
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'currentUser' => $currentUser, // Optionnel : pour vérifier dans le template si l'utilisateur est connecté
         ]);
     }
+
+
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
@@ -78,4 +88,11 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
+
+
+
 }
