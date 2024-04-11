@@ -110,8 +110,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setPassword(string $password): static
     {
+<<<<<<< HEAD
 
        $this->password = $password;
+=======
+        $this->password = $password;
+>>>>>>> f830fc13655f2bc83e9bc010f912acb92027e88c
 
         return $this;
     }

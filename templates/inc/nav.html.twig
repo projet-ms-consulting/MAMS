@@ -1,0 +1,9 @@
+<nav class="header-nav">
+
+
+    {% if app.user %}
+    <a href="{{ path('app_profile') }}" class="nav-link">Mon profil</a>
+    <a href="{{ path('app_logout') }}" class="nav-link" >Déconnexion</a>
+
+    {% endif %}
+</nav>
