@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trips PDF</title>
+    <style>
+        table {
+            margin-left: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Trips</h1>
+
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Trip Date</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Mileage</th>
+        <th>Unit</th>
+        <th>Context</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Billable Client</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for trip in trips %}
+        <tr>
+            <td>{{ trip.id }}</td>
+            <td>{{ trip.tripDate ? trip.tripDate|date('Y-m-d') : '' }}</td>
+            <td>{{ trip.origin }}</td>
+            <td>{{ trip.destination }}</td>
+            <td>{{ trip.mileage }}</td>
+            <td>{{ trip.unit }}</td>
+            <td>{{ trip.context }}</td>
+            <td>{{ trip.category }}</td>
+            <td>{{ trip.description }}</td>
+            <td>{{ trip.billableClient ? 'Yes' : 'No' }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

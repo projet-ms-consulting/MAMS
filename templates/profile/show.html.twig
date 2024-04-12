@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <h1>Mon Profil</h1>
+
+    <table class="profile-table">
+        <tr>
+            <th>Nom</th>
+            <td>{{ lastName }}</td>
+        </tr>
+        <tr class="gray-row">
+            <th>Prénom</th>
+            <td>{{ firstName }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ email }}</td>
+        </tr>
+
+    </table>
+    <div>
+{#  <a href="{{ path('app_user_edit', {'id': user.id}) }}"><button class="btnAppPerso">Modifier</button></a>#}
+    <a href="{{ path('app_trips_new') }}"><button class="btnAppPerso">Retour</button></a>
+{% endblock %}
