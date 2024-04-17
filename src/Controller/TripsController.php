@@ -17,8 +17,14 @@ class TripsController extends AbstractController
     #[Route('/', name: 'app_trips_index', methods: ['GET'])]
     public function index(TripsRepository $tripsRepository): Response
     {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer les voyages associés à l'utilisateur connecté
+        $trips = $tripsRepository->findBy(['user' => $user]);
+
         return $this->render('trips/index.html.twig', [
-            'trips' => $tripsRepository->findAll(),
+            'trips' => $trips,
         ]);
     }
 
@@ -26,6 +32,11 @@ class TripsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $trip = new Trips();
+
+        // Associer le voyage à l'utilisateur connecté
+        $user = $this->getUser();
+        $trip->setUser($user);
+
         $form = $this->createForm(TripsType::class, $trip);
         $form->handleRequest($request);
 
@@ -43,8 +54,15 @@ class TripsController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_trips_show', methods: ['GET'])]
-    public function show(Trips $trip): Response
+    public function show(Trips $trip, EntityManagerInterface $entityManager): Response
     {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer les voyages associés à l'utilisateur connecté
+        $tripsRepository = $entityManager->getRepository(Trips::class);
+        $trips = $tripsRepository->findBy(['user' => $user]);
+
         return $this->render('trips/show.html.twig', [
             'trip' => $trip,
         ]);
