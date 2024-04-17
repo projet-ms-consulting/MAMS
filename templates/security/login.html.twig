@@ -48,4 +48,7 @@
             <p><a href="{{ path('app_forgot_password') }}">Mot de passe oublié ?</a></p>
         </div>
     </form>
+    {# Ajouter le lien vers la page d'inscription juste en dessous du formulaire de connexion #}
+    <a href="{{ path('app_register') }}"><button class="btnAppPerso">S'inscrire</button></a>
+
 {% endblock %}

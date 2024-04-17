@@ -35,6 +35,12 @@ class UserController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+        // Définissez la classe de bouton
+        $buttonClass = 'Créer nouveau';
+        return $this->render('user/new.html.twig', [
+            'form' => $form->createView(),
+            'button_class' => $buttonClass, // Transmettez la variable 'button_class' au template
+        ]);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
