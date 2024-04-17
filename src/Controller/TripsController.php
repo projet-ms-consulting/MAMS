@@ -19,6 +19,7 @@ class TripsController extends AbstractController
     {
         return $this->render('trips/index.html.twig', [
             'trips' => $tripsRepository->findAll(),
+            ($this->getUser())
         ]);
     }
 
