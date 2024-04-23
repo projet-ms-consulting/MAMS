@@ -84,7 +84,9 @@ header h1 {
 }
 
 .nav-link:hover {
-    text-decoration: underline;
+    color: #ffffff; /* Couleur du texte lumineux au survol */
+    background-color: #007bff; /* Couleur de fond lumineuse au survol */
+
 }
 
 .nav-user {
@@ -94,6 +96,17 @@ header h1 {
 
 .header-nav .nav-link {
     margin-top: 10px; /* Ajustez cette valeur selon vos besoins */
+}
+
+/* Animation clignotante */
+@keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.blink {
+    animation: blink 60s infinite;
 }
 
 /* Styles pour le logo */
