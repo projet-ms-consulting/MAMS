@@ -2,8 +2,12 @@
 
 
     {% if app.user %}
-    <a href="{{ path('app_profile') }}" class="nav-link">Mon profil</a>
-    <a href="{{ path('app_logout') }}" class="nav-link" >Déconnexion</a>
 
+        <a href="{{ path('app_user_new') }}" class="nav-link">Nouvel utilisateur</a>
+        <a href="{{ path('app_vehicle_new') }}" class="nav-link" >Nouveau véhicule</a>
+        <a href="{{ path('app_trips_new') }}" class="nav-link">Nouveau trajet</a>
+        <a href="{{ path('app_expenses_new') }}" class="nav-link" >Nouveau frais</a>
+        <a href="{{ path('app_profile') }}" class="nav-link">Mon profil</a>
+        <a href="{{ path('app_logout') }}" class="nav-link" >Déconnexion</a>
     {% endif %}
 </nav>
