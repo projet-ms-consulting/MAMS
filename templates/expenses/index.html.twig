@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Expenses index</h1>
 
-    <table class="table">
+    <table class="vehicle-table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,8 +21,8 @@
                 <td>{{ expense.expenseType }}</td>
                 <td>{{ expense.TotalAmount }}</td>
                 <td>
-                    <a href="{{ path('app_expenses_show', {'id': expense.id}) }}">show</a>
-                    <a href="{{ path('app_expenses_edit', {'id': expense.id}) }}">edit</a>
+                    <a href="{{ path('app_expenses_show', {'id': expense.id}) }}">Afficher</a>
+                    <a href="{{ path('app_expenses_edit', {'id': expense.id}) }}">Modifier</a>
                     <link rel="stylesheet" href="styles.scss">
                 </td>
             </tr>
@@ -34,5 +34,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_expenses_new') }}">Create new</a>
+    <a href="{{ path('app_expenses_new') }}"><button class="btnAppPerso">Créer nouveau</button></a>
 {% endblock %}

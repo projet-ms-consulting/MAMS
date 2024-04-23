@@ -52,12 +52,7 @@
                 {% endif %}
             {% endif %}
 
-            <li class="nav-item">
-                <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
-            </li>
-            <li class="nav-item nav-user">
-                Bonjour {{ app.user.firstName }} {{ app.user.lastName }}
-            </li>
+
         {% endif %}
         {% if app.user %}
             <li class="nav-item">
