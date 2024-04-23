@@ -15,7 +15,7 @@ body {
     padding-bottom: 135px;
 }
 
-/*header {
+header {
     background-color: white;
     padding: 1rem 19.5rem;
 }
@@ -36,11 +36,11 @@ header h1 {
     height: 20px;
     color : #2B4D89;
     font-weight: bold;
-}*/
+}
 
 
 
-/* Styles pour la barre de navigation */
+ /*Styles pour la barre de navigation */
 .navbar {
 
         display: flex;
@@ -171,6 +171,13 @@ h1{
     color: #01012f;
     position: relative;
     top: 20px;
+    margin-top: 30px; /* Déplace le h1 de 20 pixels vers le bas */
+    padding-top: 20px; /* Ajoute un remplissage de 20 pixels en haut du h1, ce qui le déplace vers le bas */
+    position: relative;
+    top: 20px; /* Déplace le h1 de 20 pixels vers le bas */
+    transform: translateY(20px); /* Déplace le h1 de 20 pixels vers le bas */
+
+
 
 }
 .card{
@@ -205,6 +212,7 @@ form input[type="password"] {
 
 .button-container {
     margin-top: 20px;
+
 }
 
 .btnAppPerso {
@@ -218,6 +226,9 @@ form input[type="password"] {
     margin-right: 7px;
     width: 140px;
     height: 40px; /* Augmenter la hauteur */
+    position: relative;
+    top: 50px; /* Déplace le h1 de 20 pixels vers le bas */
+    margin-top: 20px; /* Déplace le h1 de 20 pixels vers le bas */
 }
 
 
@@ -234,6 +245,7 @@ form input[type="password"] {
 .profile-table {
     width: 100%;
     border-collapse: collapse;
+    transform: translateY(30px); /* Déplace le h1 de 30 pixels vers le bas */
 }
 
 .profile-table th, .profile-table td {
@@ -276,13 +288,24 @@ form input[type="password"] {
 
 .vehicle-table {
     width: 100%; /* Largeur totale du tableau */
+    transform: translateY(50px);
 }
 
-.vehicle-table th,
+.vehicle-table th {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    width: auto; /* Largeur automatique pour chaque cellule */
+
+
+}
 .vehicle-table td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
     border-left: 1px solid #ddd;
     width: auto; /* Largeur automatique pour chaque cellule */
+
 }
+
+
 
