@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Trips;
 use App\Form\TripsType;
+use App\Repository\ExpensesRepository;
 use App\Repository\TripsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,7 +55,7 @@ class TripsController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_trips_show', methods: ['GET'])]
-    public function show(Trips $trip, EntityManagerInterface $entityManager): Response
+    public function show(Trips $trip, EntityManagerInterface $entityManager,ExpensesRepository $expensesRepository): Response
     {
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
@@ -63,8 +64,11 @@ class TripsController extends AbstractController
         $tripsRepository = $entityManager->getRepository(Trips::class);
         $trips = $tripsRepository->findBy(['user' => $user]);
 
+        $expenses = $expensesRepository->findBy(['trips' => $trip]);
+
         return $this->render('trips/show.html.twig', [
             'trip' => $trip,
+            'expenses' => $expenses,
         ]);
     }
 
@@ -86,14 +90,26 @@ class TripsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_trips_delete', methods: ['POST'])]
-    public function delete(Request $request, Trips $trip, EntityManagerInterface $entityManager): Response
+    #[Route('/trips/{id}', name: 'app_trips_delete', methods: ['POST'])]
+    public function delete(Request $request, Trips $trip, EntityManagerInterface $entityManager, ExpensesRepository $expensesRepository): Response
     {
+        // Vérifiez si le jeton CSRF est valide
         if ($this->isCsrfTokenValid('delete'.$trip->getId(), $request->request->get('_token'))) {
+            // Récupérez les dépenses associées à ce voyage
+            $expenses = $expensesRepository->findBy(['trips' => $trip]);
+
+            // Supprimez les dépenses associées à ce voyage
+            foreach ($expenses as $expense) {
+                $entityManager->remove($expense);
+            }
+
+            // Supprimez le voyage lui-même
             $entityManager->remove($trip);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_trips_index', [], Response::HTTP_SEE_OTHER);
-    }
+        return $this->redirectToRoute('app_trips_index');
+
+}
+
 }

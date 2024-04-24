@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Expenses</h1>
 
-    <table class="table">
+    <table class="vehicle-table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_expenses_index') }}">back to list</a>
+    <a href="{{ path('app_expenses_index') }}"><button class="btnAppPerso">Retour à la liste</button></a>
 
-    <a href="{{ path('app_expenses_edit', {'id': expense.id}) }}">Modifier</a>
+    <a href="{{ path('app_expenses_edit', {'id': expense.id}) }}"><button class="btnAppPerso">Modifier</button></a>
 
     {{ include('expenses/_delete_form.html.twig') }}
 {% endblock %}

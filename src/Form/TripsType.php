@@ -6,6 +6,7 @@ use App\Entity\Trips;
 use App\Entity\User;
 use App\Entity\Users;
 use App\Entity\Vehicle;
+use App\Entity\Expenses;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,8 +26,8 @@ class TripsType extends AbstractType
             ->add('mileage')
             ->add('unit' , ChoiceType::class, [
                 'choices' => [
-                    'm' => 'm',
-                    'km' => 'km',
+                    'miles' => 'miles',
+                    'kilomètres' => 'kilomètres',
                 ],
             ])
             ->add('context')
@@ -43,8 +44,8 @@ class TripsType extends AbstractType
                 'class' => Vehicle::class,
                 'choice_label' => 'label',
                 'multiple' => true,
-            ])
-        ;
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

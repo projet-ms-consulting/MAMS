@@ -54,9 +54,13 @@
 
         {% endif %}
         {% if app.user %}
-            <li class="nav-item">
-                <a href="{{ path('app_profile') }}" class="nav-link">Mon profil</a>
-            </li>
+
+            {% if app.request.attributes.get('_route') != 'app_profile' %}
+                <li class="nav-item">
+                    <a href="{{ path('app_profile') }}" class="nav-link">Mon profil</a>
+                </li>
+            {% endif %}
+
             <li class="nav-item">
                 <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
             </li>

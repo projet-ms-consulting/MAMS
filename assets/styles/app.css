@@ -307,5 +307,16 @@ form input[type="password"] {
 
 }
 
+h2 {
+    margin-bottom: 0; /* Ajoute un espace en bas du titre */
 
+}
 
+.table-container {
+    margin-bottom: 20px; /* Ajoute un espace en bas du tableau */
+}
+
+/* Ajouter une marge en haut du tableau */
+.table-container + h2 {
+    margin-top: 70px; /* Ajoute un espace au-dessus du titre */
+}

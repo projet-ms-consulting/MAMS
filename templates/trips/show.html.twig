@@ -1,60 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Trips{% endblock %}
+{% block title %}Détails du voyage{% endblock %}
 
 {% block body %}
-    <h1>Trips</h1>
+    <h1>Détails du voyage</h1>
 
     <table class="vehicle-table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ trip.id }}</td>
-            </tr>
-            <tr>
-                <th>TripDate</th>
-                <td>{{ trip.tripDate ? trip.tripDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Origin</th>
-                <td>{{ trip.origin }}</td>
-            </tr>
-            <tr>
-                <th>Destination</th>
-                <td>{{ trip.destination }}</td>
-            </tr>
-            <tr>
-                <th>Mileage</th>
-                <td>{{ trip.mileage }}</td>
-            </tr>
-            <tr>
-                <th>Unit</th>
-                <td>{{ trip.unit }}</td>
-            </tr>
-            <tr>
-                <th>Context</th>
-                <td>{{ trip.context }}</td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td>{{ trip.category }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ trip.description }}</td>
-            </tr>
-            <tr>
-                <th>BillableClient</th>
-                <td>{{ trip.billableClient ? 'Yes' : 'No' }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ trip.id }}</td>
+        </tr>
+        <tr>
+            <th>Date du voyage</th>
+            <td>{{ trip.tripDate ? trip.tripDate|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Origin</th>
+            <td>{{ trip.origin }}</td>
+        </tr>
+        <tr>
+            <th>Destination</th>
+            <td>{{ trip.destination }}</td>
+        </tr>
+        <tr>
+            <th>Mileage</th>
+            <td>{{ trip.mileage }}</td>
+        </tr>
+        <tr>
+            <th>Unit</th>
+            <td>{{ trip.unit }}</td>
+        </tr>
+        <tr>
+            <th>Context</th>
+            <td>{{ trip.context }}</td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>{{ trip.category }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ trip.description }}</td>
+        </tr>
+        <tr>
+            <th>BillableClient</th>
+            <td>{{ trip.billableClient ? 'Yes' : 'No' }}</td>
+        </tr>
         </tbody>
     </table>
 
+    <h2>Frais associés au voyage</h2>
+    {% if expenses is not empty %}
+        <table class="vehicle-table">
+            <thead>
+            <tr>
+                <th>Type de frais</th>
+                <th>Montant total</th>
+                           </tr>
+            </thead>
+            <tbody>
+            {% for expense in expenses %}
+                <tr>
+
+                    <td>{{ expense.expenseType }}</td>
+                    <td>{{ expense.TotalAmount }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun frais associé à ce voyage.</p>
+    {% endif %}
+
     <a href="{{ path('app_pdf_generator') }}" ><button class="btnAppPerso">Télécharger le PDF</button></a>
-
     <a href="{{ path('app_trips_index') }}"><button class="btnAppPerso">Retour à la liste</button></a>
-
     <a href="{{ path('app_trips_edit', {'id': trip.id}) }}"><button class="btnAppPerso">Modifier</button></a>
-
     {{ include('trips/_delete_form.html.twig') }}
 {% endblock %}

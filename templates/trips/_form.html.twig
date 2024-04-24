@@ -1,5 +1,7 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+{#    {{ form_row(form.expenses) }} #}{# Ajout du champ Expenses #}
+
     <button class="btnAppPerso">{{ button_label|default('Enregistrer') }}</button>
 
 {{ form_end(form) }}
