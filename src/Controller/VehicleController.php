@@ -9,11 +9,15 @@ use App\Repository\VehicleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
 
 #[Route('/vehicle')]
+#[IsGranted('ROLE_USER')]
 class VehicleController extends AbstractController
 {
     #[Route('/', name: 'app_vehicle_index', methods: ['GET'])]
@@ -66,6 +70,9 @@ class VehicleController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Security("is_granted('ROLE_USER') and user===vehicle.getUSer()")]
+
     #[Route('/{id}', name: 'app_vehicle_show', methods: ['GET'])]
     public function show(Vehicle $vehicle): Response
     {

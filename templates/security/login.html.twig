@@ -34,21 +34,26 @@
                 </label>
             </div>
         #}
-
-        <button class="btnAppPerso" type="submit">
-            Se connecter
-        </button>
-
         <div class="remember checkbox mb-3">
             <label for="remember">Se souvenir de moi</label>
             <input type="checkbox" name="_remember_me" id="remember">
         </div>
 
         <div>
+
+        <button class="btnAppPerso" type="submit">
+            Se connecter
+        </button>
+        <a href="{{ path('app_register') }}"><button class="btnAppPerso">S'inscrire</button></a>
+
+        </div>
+
+
+        <div>
             <p><a href="{{ path('app_forgot_password') }}">Mot de passe oublié ?</a></p>
         </div>
     </form>
     {# Ajouter le lien vers la page d'inscription juste en dessous du formulaire de connexion #}
-    <a href="{{ path('app_register') }}"><button class="btnAppPerso">S'inscrire</button></a>
+
 
 {% endblock %}

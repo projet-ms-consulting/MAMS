@@ -1,7 +1,8 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
 {#    {{ form_row(form.expenses) }} #}{# Ajout du champ Expenses #}
-
+<div>
     <button class="btnAppPerso">{{ button_label|default('Enregistrer') }}</button>
-
+   <a href="{{ path('app_trips_index') }}"><button class="btnAppPerso">Retour à la liste</button></a>
+</div>
 {{ form_end(form) }}

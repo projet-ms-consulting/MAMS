@@ -8,26 +8,39 @@ use App\Repository\ExpensesRepository;
 use App\Repository\TripsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/trips')]
+#[IsGranted('ROLE_USER')]
 class TripsController extends AbstractController
 {
     #[Route('/', name: 'app_trips_index', methods: ['GET'])]
-    public function index(TripsRepository $tripsRepository): Response
+    public function index(EntityManagerInterface $entityManager, ExpensesRepository $expensesRepository, Security $security): Response
     {
         // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
+        $user = $security->getUser();
 
-        // Récupérer les voyages associés à l'utilisateur connecté
-        $trips = $tripsRepository->findBy(['user' => $user]);
+        // Vérifier si l'utilisateur connecté est administrateur
+        $isAdmin = $security->isGranted('ROLE_ADMIN');
+
+        // Si l'utilisateur est administrateur, récupérer tous les trajets
+        if ($isAdmin) {
+            $trips = $entityManager->getRepository(Trips::class)->findAll();
+        } else {
+            // Sinon, récupérer les trajets associés à l'utilisateur connecté
+            $trips = $entityManager->getRepository(Trips::class)->findBy(['user' => $user]);
+        }
 
         return $this->render('trips/index.html.twig', [
             'trips' => $trips,
         ]);
     }
+
 
     #[Route('/new', name: 'app_trips_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -53,6 +66,34 @@ class TripsController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+ /*   #[Route('/{id}', name: 'app_list_trips', methods: ['GET'])]
+    public function ListTrips (Trips $trip, EntityManagerInterface $entityManager, ExpensesRepository $expensesRepository, Security $security): Response
+    {
+        // Récupérer l'utilisateur connecté
+        $user = $security->getUser();
+
+        // Vérifier si l'utilisateur connecté est administrateur
+        $isAdmin = $security->isGranted('ROLE_ADMIN');
+
+        // Si l'utilisateur est administrateur, récupérer tous les trajets
+        if ($isAdmin) {
+            $trips = $entityManager->getRepository(Trips::class)->findAll();
+        } else {
+            // Sinon, récupérer les trajets associés à l'utilisateur connecté
+            $trips = $entityManager->getRepository(Trips::class)->findBy(['user' => $user]);
+        }
+
+        // Récupérer les dépenses associées au trajet actuel
+        $expenses = $expensesRepository->findBy(['trips' => $trip]);
+
+        return $this->render('trips/index.html.twig', [
+            'trip' => $trip,
+            'expenses' => $expenses,
+            'trips' => $trips, // Passer tous les trajets à la vue au cas où l'administrateur est connecté
+        ]);
+    }*/
 
     #[Route('/{id}', name: 'app_trips_show', methods: ['GET'])]
     public function show(Trips $trip, EntityManagerInterface $entityManager,ExpensesRepository $expensesRepository): Response

@@ -4,15 +4,15 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Crimson Text', sans-serif;
-    background-color: aliceblue;
+    background-color: #F5F5DC;
     position: relative;
 }
 
 .responsive-container {
     max-width: 800px;
     margin: auto;
-    padding:  10px;
-    padding-bottom: 135px;
+    padding-top: 30px;
+
 }
 
 header {
@@ -40,20 +40,20 @@ header h1 {
 
 
 
- /*Styles pour la barre de navigation */
+/*Styles pour la barre de navigation */
 .navbar {
 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #ffffff;
-        padding: 1rem;
-        width: 100%;
-        height: 60px;
-        margin: 0;
-        position: fixed;
-        top: 0;
-        left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 
 }
 
@@ -129,8 +129,8 @@ footer{
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 125px;
-    background-color: #01012f;
+    height: 65px;
+    background-color:deepskyblue;
     color: #ffffff;
     text-align: center;
     padding: 10px;
@@ -144,9 +144,6 @@ footer{
 form > div > div{
     margin-top: 15px;
 }
-form > div {
-    margin-top: 15px;
-}
 
 /* Alignement vertical des éléments du formulaire */
 form {
@@ -154,12 +151,12 @@ form {
     flex-direction: column;
     margin-top: 70px; /* Ajoutez une marge supérieure pour éviter le chevauchement avec la barre de navigation */
 
+
 }
 
-/* Espacement entre les éléments */
-form > * {
-    margin-bottom: 10px;
-}
+
+
+
 
 /* Empêcher l'élargissement du bouton */
 .btnAppPerso {
@@ -170,11 +167,10 @@ h1{
     text-shadow: 1px 1px #0a66c2;
     color: #01012f;
     position: relative;
-    top: 20px;
-    margin-top: 30px; /* Déplace le h1 de 20 pixels vers le bas */
+    right: 100px; /* Déplacer vers la gauche */
+    margin-top: 0; /* Déplace le h1 de 20 pixels vers le bas */
     padding-top: 20px; /* Ajoute un remplissage de 20 pixels en haut du h1, ce qui le déplace vers le bas */
-    position: relative;
-    top: 20px; /* Déplace le h1 de 20 pixels vers le bas */
+
     transform: translateY(20px); /* Déplace le h1 de 20 pixels vers le bas */
 
 
@@ -202,16 +198,40 @@ h1{
     border-bottom: 2px solid #c0c07d;
 }
 
-/* Styles personnalisés pour les champs de saisie d'email et de mot de passe */
+
+/* Appliquer une largeur fixe à tous les champs de saisie */
+form input[type="text"],
 form input[type="email"],
-form input[type="password"] {
-    width: 100%; /* Augmentez la largeur à 100% */
-    max-width: 300px; /* Définissez une largeur maximale */
-    margin-right: 0.5rem; /* Ajoutez un peu d'espace à droite pour l'espacement */
+form input[type="password"],
+form input[type="number"],
+form input[type="date"],
+form textarea {
+    border-color: black; /* Bordure par défaut */
+    border-radius: 10px; /* Coins arrondis */
+    border-width: 2px; /* Épaisseur de la bordure */
+    padding: 8px; /* Remplissage */
+    width: 100%; /* Largeur */
+    margin-bottom: 10px; /* Espacement en bas */
 }
 
+/* Styles pour la bordure des champs lorsqu'ils sont en focus */
+form input:focus,
+form textarea:focus {
+    border-color: #007bff; /* Couleur bleue lorsqu'en focus */
+    border-width: 3px; /* Épaisseur de la bordure lorsqu'en focus */
+    outline: none; /* Supprimer la bordure de focus par défaut */
+}
+
+/* Styles pour la bordure des champs lorsqu'ils sont actifs (cliqués) */
+form input:active,
+form textarea:active {
+    border-color: #007bff; /* Couleur bleue lorsqu'actif (cliqué) */
+    border-width: 3px; /* Épaisseur de la bordure lorsqu'actif (cliqué) */
+}
+
+
 .button-container {
-    margin-top: 20px;
+    margin-top: 0;
 
 }
 
@@ -227,8 +247,7 @@ form input[type="password"] {
     width: 140px;
     height: 40px; /* Augmenter la hauteur */
     position: relative;
-    top: 50px; /* Déplace le h1 de 20 pixels vers le bas */
-    margin-top: 20px; /* Déplace le h1 de 20 pixels vers le bas */
+
 }
 
 
@@ -314,9 +333,20 @@ h2 {
 
 .table-container {
     margin-bottom: 20px; /* Ajoute un espace en bas du tableau */
+
 }
 
 /* Ajouter une marge en haut du tableau */
 .table-container + h2 {
     margin-top: 70px; /* Ajoute un espace au-dessus du titre */
 }
+.remember {
+    display:flex;
+}
+.remember input {
+    margin: 2px 0 12px 0;
+    width: 50px;
+}
+
+
+
