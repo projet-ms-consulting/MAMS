@@ -12,11 +12,11 @@
             <td>{{ trip.id }}</td>
         </tr>
         <tr>
-            <th>Date du voyage</th>
+            <th>DateDuTrajet</th>
             <td>{{ trip.tripDate ? trip.tripDate|date('Y-m-d') : '' }}</td>
         </tr>
         <tr>
-            <th>Origin</th>
+            <th>Départ</th>
             <td>{{ trip.origin }}</td>
         </tr>
         <tr>
@@ -24,19 +24,19 @@
             <td>{{ trip.destination }}</td>
         </tr>
         <tr>
-            <th>Mileage</th>
+            <th>Kilométrage</th>
             <td>{{ trip.mileage }}</td>
         </tr>
         <tr>
-            <th>Unit</th>
+            <th>Unité</th>
             <td>{{ trip.unit }}</td>
         </tr>
         <tr>
-            <th>Context</th>
+            <th>Contexte</th>
             <td>{{ trip.context }}</td>
         </tr>
         <tr>
-            <th>Category</th>
+            <th>Catégorie</th>
             <td>{{ trip.category }}</td>
         </tr>
         <tr>
@@ -44,7 +44,7 @@
             <td>{{ trip.description }}</td>
         </tr>
         <tr>
-            <th>BillableClient</th>
+            <th>FacturableAuClient</th>
             <td>{{ trip.billableClient ? 'Yes' : 'No' }}</td>
         </tr>
         </tbody>
