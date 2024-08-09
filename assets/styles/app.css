@@ -161,6 +161,7 @@ form {
 /* Empêcher l'élargissement du bouton */
 .btnAppPerso {
     align-self: flex-start;
+    display: inline-block; /* Afficher les boutons côte à côte */
 }
 h1{
     text-align: center;
@@ -231,23 +232,34 @@ form textarea:active {
 
 .button-container {
     margin-top: 0;
+    display: inline-block; /* Afficher les boutons côte à côte */
+
 
 }
 
 .btnAppPerso {
     display: inline-block; /* Afficher les boutons côte à côte */
-    color: white;
-    border-style: solid;
-    border-color: white;
-    border-radius: 5px;
-    background-color: #2B4D89;
-    margin-top: 20px;
-    margin-right: 7px;
-    width: 140px;
-    height: 40px; /* Augmenter la hauteur */
-    position: relative;
-
+    color: white; /* Couleur du texte */
+    border: 1px solid white; /* Bordure solide de 1px avec couleur blanche */
+    border-radius: 5px; /* Coins arrondis */
+    background-color: #2B4D89; /* Couleur de fond */
+    margin-top: 50px; /* Marge supérieure */
+    margin-right: 7px; /* Marge à droite */
+    width: 140px; /* Largeur du bouton */
+    height: 40px; /* Hauteur du bouton */
+    text-align: center; /* Centrer le texte à l'intérieur du bouton */
+    line-height: 40px; /* Alignement vertical du texte, doit correspondre à la hauteur */
+    cursor: pointer; /* Curseur pointeur pour indiquer que c'est cliquable */
+    text-decoration: none; /* Supprimer la décoration de texte (utile si utilisé comme lien) */
+    position: relative; /* Positionnement relatif (au cas où des éléments enfants en dépendent) */
+    font-size: 16px; /* Taille de la police */
 }
+
+.btnAppPerso:hover {
+    background-color: #1A365F; /* Changer la couleur de fond au survol */
+    border-color: #1A365F; /* Changer la couleur de la bordure au survol */
+}
+
 
 
 
@@ -376,6 +388,108 @@ body {
     .btn {
         width: 100%;
     }
+}
+/* Global Styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+a:hover {
+    color: #23527c;
+}
+
+/* Header Styles */
+
+header {
+    background-color: #337ab7;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Navigation Styles */
+
+nav {
+    background-color: #23527c;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #337ab7;
+}
+
+/* Main Content Styles */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+main h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+main p {
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+
+footer {
+    background-color: #337ab7;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 10px;
 }
 
 

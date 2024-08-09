@@ -3,18 +3,18 @@
 {% block title %}Vehicle index{% endblock %}
 
 {% block body %}
-    <h1>Vehicle index</h1>
+    <h1>Liste des véhicules</h1>
 
-    <h2>Vehicles with trips</h2>
+   {# <h2>Véhicule avec trajets</h2>
 <div class="table-container">
     <table class="vehicle-table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Label</th>
+            <th>Marque</th>
             <th>Model</th>
-            <th>Plate</th>
-            <th>Fiscal Power</th>
+            <th>Immatriculation</th>
+            <th>Puissance fiscale</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -38,18 +38,18 @@
         {% endfor %}
         </tbody>
     </table>
-</div>
+</div>#}
 
-    <h2>Vehicles without trips</h2>
+{#    <h2>Vehicles without trips</h2>#}
     <div class="table-container">
     <table class="vehicle-table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Label</th>
-            <th>Model</th>
-            <th>Plate</th>
-            <th>Fiscal Power</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Immatriculation</th>
+            <th>Puissance fiscale</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -62,18 +62,18 @@
                 <td>{{ vehicle.plate }}</td>
                 <td>{{ vehicle.fiscalPower }}</td>
                 <td>
-                    <a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">Show</a>
-                    <a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">Edit</a>
+                    <a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">Voir</a>
+                    <a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">No records found</td>
+                <td colspan="6">Aucun véhicule trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     </div>
 
-    <a href="{{ path('app_vehicle_new') }}"><button class="btnAppPerso">Create new</button></a>
+    <a href="{{ path('app_vehicle_new') }}"><button class="btnAppPerso">Créer nouveau véhicule</button></a>
 {% endblock %}
